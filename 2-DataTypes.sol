@@ -24,11 +24,15 @@ contract DataTypesContract{
     // address:
     address private myAddress = 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4;
 
-    // payable address
+    // payable address : here we are converting the address to the payable address by using the payable function.
     address payable private myPayableAddress = payable(myAddress);
 
     //msg.sender: It represents the account or contract that initiated the current execution context.
     address private myAddress2 = msg.sender;
+
+
+    // we can convert byte to string by using the following function:
+    string private myString2 = string(myBytes);
 }
 
 /*
