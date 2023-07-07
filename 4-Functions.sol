@@ -4,6 +4,35 @@ pragma solidity ^0.8.18;
 
 contract FunctionsContract{
     string private text = "This is a text";
+    string private _name;
+    string private _age;
+    address private _owner;
+
+    //constructor
+    constructor(string memory name, string memory age){
+        _owner = msg.sender;
+        _name = name;
+        _age = age;
+    }
+
+    //modifier
+
+    /* 
+    require function is used to validate the inputs.
+    generally take two parameters: 
+        the first parameter is the condition that we want to check.
+        the second parameter is the error message that we want to return to the user if the condition was false.
+    if the condition is true, the function will continue, otherwise it will throw an error, and the function will stop. the gas will be refunded.
+    */
+    modifier onlyOwner(){
+        require(msg.sender == _owner, "You are not the owner");
+        _;
+    }
+
+    // usage of modifier in function
+    function changeName(string memory newName) public onlyOwner{
+        _name = newName;
+    }
 
     //view function
     function getText() public view returns(string memory){
@@ -32,4 +61,29 @@ contract FunctionsContract{
     Getter Functions:
         Generally when we want to read the state of the contract, we use getter functions.
         Getter function are automatically created for public variables with the same name of the variable. So we don't need to create them manually.
+
+    Constructor:
+        Constructor in solidity works like the constructor in other programming languages.
+        It is used to initialize the state of the contract.
+        Constructor is optional. If we don't define a constructor, the contract will use the default constructor.
+        the interesting thing about the constructor is that we can define the access modifier for it.
+        This means we can define the constructor as private or internal or public.
+        If we define the constructor as private, the contract can't be deployed by other contracts.
+        If we define the constructor as internal, the contract can't be deployed by other contracts, but it can be deployed by the contracts that inherit from this contract.
+        If we define the constructor as public, the contract can be deployed by other contracts. 
+
+    Difference between memory and storage keywords:
+        memory keyword is used for variables that are declared inside of the functions.
+        storage keyword is used for variables that are declared outside of the functions.
+
+    Modifiers:
+        Modifiers are used to change the behavior of functions in a declarative way.
+        Modifiers are defined with the keyword modifier.
+        Modifiers can be used to:
+            1- Restrict access
+            2- Validate inputs
+            3- Guard against reentrancy hack
+            4- Guard against underflow and overflow
+            5- etc.
+        
 */
