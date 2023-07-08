@@ -53,7 +53,9 @@ contract Mappings{
         It is similar to the dictionary in C#.
         just works like arrays, but instead of using indexes, we use keys to access the values.
         the keys can be of any data type, but the values must be of the same data type.
-    
+        
+        NOTE: ARRAYS ARE DIFFERENT THAN MAPS
+
     Nested Mapping
         Nested mapping is a mapping that has another mapping as its value.
         like nested arrays, we can have nested mappings. we can have a mapping as the value of another mapping.
