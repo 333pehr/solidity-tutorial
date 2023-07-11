@@ -4,6 +4,23 @@ pragma solidity ^0.8.18;
 
 contract Errors{
 
+    function buyWithRequire(uint amount) public payable{
+        require(amount <= msg.value / price, "Not enough Ether provided.");
+        //...
+    }
+
+    function buyWithRevert(uint amount) public payable{
+        if(amount > msg.value / price){
+            revert("Not enough Ether provided.");
+        }
+        //...
+    }
+
+    function buyWithAssert(uint amount) public payable{
+        assert(amount <= msg.value / price);
+        //...
+    }
+
 }
 
 /*
